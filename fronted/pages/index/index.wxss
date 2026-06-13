@@ -1,0 +1,98 @@
+.page {
+  min-height: 100vh;
+  padding: 32rpx 28rpx 56rpx;
+  background: #f7f7f7;
+}
+
+.hero {
+  min-height: 330rpx;
+  padding: 48rpx 36rpx;
+  border-radius: 8rpx;
+  background: linear-gradient(135deg, #ff8a2a, #f45b2f);
+  color: #fff;
+}
+
+.shop-name {
+  font-size: 52rpx;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.shop-notice {
+  width: 86%;
+  margin-top: 28rpx;
+  font-size: 28rpx;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.info-panel {
+  margin-top: 24rpx;
+  padding: 8rpx 28rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.info-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 92rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  font-size: 28rpx;
+}
+
+.info-row:last-child {
+  border-bottom: 0;
+}
+
+.info-label {
+  color: #777;
+}
+
+.info-value {
+  max-width: 470rpx;
+  color: #222;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.start-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 96rpx;
+  margin-top: 36rpx;
+  border-radius: 8rpx;
+  background: #222;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+}
+
+.feature-grid {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30rpx;
+}
+
+.feature-item {
+  width: 31.5%;
+  min-height: 150rpx;
+  padding: 22rpx 18rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.feature-title {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #222;
+}
+
+.feature-desc {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.45;
+  color: #777;
+}

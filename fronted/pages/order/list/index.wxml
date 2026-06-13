@@ -1,0 +1,22 @@
+<view class="page">
+  <view class="empty" wx:if="{{ orders.length === 0 }}">暂无订单</view>
+
+  <view class="order-card" wx:for="{{ orders }}" wx:key="id">
+    <view class="card-head">
+      <text>{{ item.createTime }}</text>
+      <text class="status {{ item.statusClass }}">{{ item.statusText }}</text>
+    </view>
+    <view class="summary">{{ item.summary }}</view>
+    <view class="card-bottom">
+      <view>
+        <view class="pickup">取餐号 {{ item.pickupNo }}</view>
+        <view class="amount">¥{{ item.totalAmount }}</view>
+      </view>
+      <button data-id="{{ item.id }}" bindtap="goDetail">查看详情</button>
+    </view>
+  </view>
+
+  <view class="load-tip" wx:if="{{ orders.length > 0 }}">
+    {{ finished ? '已经到底啦' : '上拉加载更多' }}
+  </view>
+</view>

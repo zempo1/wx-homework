@@ -1,0 +1,120 @@
+.page {
+  min-height: 100vh;
+  padding: 24rpx;
+  background: #f6f6f6;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  min-height: 156rpx;
+  padding: 24rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.avatar-button {
+  flex: 0 0 auto;
+  width: 104rpx !important;
+  height: 104rpx;
+  border-radius: 52rpx;
+  overflow: hidden;
+  background: #f8eee5;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+}
+
+.avatar-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: #c56d2c;
+  font-size: 24rpx;
+  font-weight: 700;
+}
+
+.profile-main {
+  flex: 1;
+  min-width: 0;
+  padding: 0 22rpx;
+}
+
+.nickname-input {
+  width: 100%;
+  height: 56rpx;
+  color: #222;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.profile-tip {
+  margin-top: 8rpx;
+  color: #999;
+  font-size: 24rpx;
+}
+
+.top {
+  margin-top: 20rpx;
+  padding: 32rpx 28rpx;
+  border-radius: 8rpx;
+  background: #222;
+  color: #fff;
+}
+
+.top-title {
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.top-desc {
+  margin-top: 12rpx;
+  color: #ccc;
+  font-size: 26rpx;
+}
+
+.record {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20rpx;
+  padding: 26rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.record-left {
+  min-width: 0;
+  padding-right: 24rpx;
+}
+
+.summary {
+  color: #222;
+  font-size: 30rpx;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.time {
+  margin-top: 14rpx;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.amount {
+  flex: 0 0 auto;
+  color: #e95022;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.load-tip {
+  padding: 24rpx 0 40rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+}

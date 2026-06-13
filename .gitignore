@@ -1,0 +1,12 @@
+# Backend
+backend/target/
+backend/*.log
+backend/.idea/
+backend/*.iml
+
+# Frontend (WeChat/Uni-app)
+fronted/project.private.config.json
+
+# OS
+.DS_Store
+Thumbs.db
