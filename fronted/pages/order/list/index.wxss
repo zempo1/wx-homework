@@ -1,0 +1,87 @@
+.page {
+  min-height: 100vh;
+  padding: 24rpx;
+  background: #f6f6f6;
+}
+
+.order-card {
+  margin-bottom: 22rpx;
+  padding: 26rpx;
+  border-radius: 8rpx;
+  background: #fff;
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.status {
+  padding: 8rpx 16rpx;
+  border-radius: 8rpx;
+  font-size: 24rpx;
+}
+
+.status.waiting {
+  background: #fff2e8;
+  color: #e95022;
+}
+
+.status.done {
+  background: #eaf7ee;
+  color: #20945a;
+}
+
+.status.cancel {
+  background: #f0f0f0;
+  color: #777;
+}
+
+.summary {
+  margin-top: 24rpx;
+  color: #222;
+  font-size: 32rpx;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.card-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: 26rpx;
+}
+
+.pickup {
+  color: #777;
+  font-size: 26rpx;
+}
+
+.amount {
+  margin-top: 10rpx;
+  color: #e95022;
+  font-size: 32rpx;
+  font-weight: 800;
+}
+
+.card-bottom button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 168rpx;
+  height: 62rpx;
+  border-radius: 8rpx;
+  background: #222;
+  color: #fff;
+  font-size: 26rpx;
+}
+
+.load-tip {
+  padding: 18rpx 0 40rpx;
+  color: #999;
+  font-size: 24rpx;
+  text-align: center;
+}

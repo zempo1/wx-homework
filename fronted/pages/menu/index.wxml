@@ -1,0 +1,102 @@
+<view class="page">
+  <view class="content">
+    <scroll-view class="category" scroll-y>
+      <view
+        wx:for="{{ categories }}"
+        wx:key="id"
+        class="category-item {{ activeIndex == index ? 'active' : '' }}"
+        data-index="{{ index }}"
+        bindtap="tapCategory"
+      >
+        {{ item.name }}
+      </view>
+    </scroll-view>
+
+    <scroll-view
+      class="product-scroll"
+      scroll-y
+      scroll-into-view="category-{{ tapIndex }}"
+      scroll-with-animation
+      bindscroll="onProductScroll"
+    >
+      <block wx:for="{{ categories }}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="id">
+        <view class="category-title" id="category-{{ categoryIndex }}">{{ category.name }}</view>
+        <view
+          class="product-card"
+          wx:for="{{ category.products }}"
+          wx:for-item="product"
+          wx:for-index="productIndex"
+          wx:key="id"
+        >
+          <view class="product-image">
+            <image wx:if="{{ product.imageUrl }}" src="{{ product.imageUrl }}" mode="aspectFill" />
+            <text wx:else>美食</text>
+          </view>
+          <view class="product-main">
+            <view class="product-name">{{ product.name }}</view>
+            <view class="product-desc">{{ product.description }}</view>
+            <view class="product-bottom">
+              <text class="product-price">¥{{ product.price }}</text>
+              <view class="product-stepper">
+                <button
+                  wx:if="{{ product.cartQuantity > 0 }}"
+                  class="stepper-btn stepper-minus"
+                  data-id="{{ product.id }}"
+                  bindtap="decreaseProduct"
+                >-</button>
+                <text wx:if="{{ product.cartQuantity > 0 }}" class="stepper-count">{{ product.cartQuantity }}</text>
+                <button
+                  class="stepper-btn stepper-plus"
+                  data-category-index="{{ categoryIndex }}"
+                  data-product-index="{{ productIndex }}"
+                  bindtap="addToCart"
+                >+</button>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view class="scroll-bottom"></view>
+    </scroll-view>
+  </view>
+
+  <view class="cart-mask" wx:if="{{ showCart }}" bindtap="toggleCart"></view>
+  <view class="cart-panel" wx:if="{{ showCart }}">
+    <view class="cart-head">
+      <text>已选商品</text>
+      <button bindtap="clearCart">清空</button>
+    </view>
+    <scroll-view class="cart-list" scroll-y>
+      <view class="cart-item" wx:for="{{ cartList }}" wx:key="productId">
+        <view class="cart-info">
+          <view class="cart-name">{{ item.name }}</view>
+          <view class="cart-price">¥{{ item.subtotal }}</view>
+        </view>
+        <view class="counter">
+          <button data-id="{{ item.productId }}" bindtap="decreaseCart">-</button>
+          <text>{{ item.quantity }}</text>
+          <button data-id="{{ item.productId }}" bindtap="increaseCart">+</button>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 抛物线动画小球：外层控制X轴，内层控制Y轴 -->
+  <view class="ball-outer" wx:if="{{ ballShow }}" style="left:{{ ballX }}px;top:{{ ballStartY }}px;">
+    <view class="ball-inner-y" style="transform: translateY({{ ballOffsetY }}px);">
+      <view class="ball-dot"></view>
+    </view>
+  </view>
+
+  <view class="cart-bar">
+    <view class="cart-left" bindtap="toggleCart">
+      <view class="cart-icon" id="cart-icon">
+        <text>购</text>
+        <view class="badge" wx:if="{{ cartCount > 0 }}">{{ cartCount }}</view>
+      </view>
+      <view wx:if="{{ cartCount == 0 }}" class="cart-empty">购物车是空的</view>
+      <view wx:else class="cart-total">合计 ¥{{ cartTotal }}</view>
+    </view>
+    <button class="checkout-btn {{ cartCount > 0 ? 'ready' : '' }}" bindtap="goConfirm">去结算</button>
+  </view>
+</view>

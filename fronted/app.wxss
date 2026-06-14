@@ -1,0 +1,41 @@
+page {
+  min-height: 100%;
+  box-sizing: border-box;
+  background: #f6f6f6;
+  color: #222;
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+view,
+text,
+image,
+button,
+input,
+textarea,
+scroll-view {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  line-height: 1;
+}
+
+button::after {
+  border: 0;
+}
+
+.price {
+  color: #e95022;
+  font-weight: 700;
+}
+
+.empty {
+  padding: 80rpx 0;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}

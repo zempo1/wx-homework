@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="section">
+    <view class="section-title">订单商品</view>
+    <view class="order-item" wx:for="{{ cartList }}" wx:key="productId">
+      <view class="food-image">
+        <image wx:if="{{ item.imageUrl }}" src="{{ item.imageUrl }}" mode="aspectFill" />
+        <text wx:else>餐</text>
+      </view>
+      <view class="food-info">
+        <view class="food-name">{{ item.name }}</view>
+        <view class="food-count">x {{ item.quantity }}</view>
+      </view>
+      <view class="food-price">¥{{ item.subtotal }}</view>
+    </view>
+    <view class="total-row">
+      <text>合计</text>
+      <text class="total-price">¥{{ totalPrice }}</text>
+    </view>
+  </view>
+
+  <view class="section">
+    <view class="section-title">备注信息</view>
+    <textarea
+      class="remark"
+      maxlength="120"
+      placeholder="如少辣、不要香菜等"
+      value="{{ remark }}"
+      bindinput="onRemarkInput"
+    ></textarea>
+  </view>
+
+  <view class="bottom-bar">
+    <view class="pay-total">实付 ¥{{ totalPrice }}</view>
+    <button class="pay-btn" bindtap="submitOrder">去支付</button>
+  </view>
+</view>

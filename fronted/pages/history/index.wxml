@@ -1,0 +1,39 @@
+<view class="page">
+  <view class="profile">
+    <button class="avatar-button" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+      <image wx:if="{{ userInfo.avatarUrl }}" class="avatar" src="{{ userInfo.avatarUrl }}" mode="aspectFill" />
+      <view wx:else class="avatar-placeholder">头像</view>
+    </button>
+    <view class="profile-main">
+      <input
+        class="nickname-input"
+        type="nickname"
+        placeholder="请输入昵称"
+        value="{{ userInfo.nickname }}"
+        bindinput="onNicknameInput"
+        bindchange="saveProfile"
+      />
+    </view>
+  </view>
+
+  <view class="top">
+    <view>
+      <view class="top-title">消费记录</view>
+      <view class="top-desc">每一笔已支付订单都会记录在这里</view>
+    </view>
+  </view>
+
+  <view class="empty" wx:if="{{ records.length === 0 }}">暂无消费记录</view>
+
+  <view class="record" wx:for="{{ records }}" wx:key="orderId">
+    <view class="record-left">
+      <view class="summary">{{ item.summary }}</view>
+      <view class="time">{{ item.consumeTime }}</view>
+    </view>
+    <view class="amount">¥{{ item.totalAmount }}</view>
+  </view>
+
+  <view class="load-tip" wx:if="{{ records.length > 0 }}">
+    {{ finished ? '已经到底啦' : '上拉加载更多' }}
+  </view>
+</view>

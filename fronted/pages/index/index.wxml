@@ -1,0 +1,38 @@
+<view class="page">
+  <view class="hero">
+    <view class="shop-name">{{ shop.name }}</view>
+    <view class="shop-notice">{{ shop.notice }}</view>
+  </view>
+
+  <view class="info-panel">
+    <view class="info-row">
+      <text class="info-label">营业时间</text>
+      <text class="info-value">{{ shop.businessHours }}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">店铺地址</text>
+      <text class="info-value">{{ shop.address }}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">联系电话</text>
+      <text class="info-value">{{ shop.phone }}</text>
+    </view>
+  </view>
+
+  <button class="start-btn" bindtap="startOrder">开始点餐之旅</button>
+
+  <view class="feature-grid">
+    <view class="feature-item">
+      <view class="feature-title">现点现做</view>
+      <view class="feature-desc">下单后生成取餐号</view>
+    </view>
+    <view class="feature-item">
+      <view class="feature-title">菜单清晰</view>
+      <view class="feature-desc">分类浏览快速加购</view>
+    </view>
+    <view class="feature-item">
+      <view class="feature-title">记录可查</view>
+      <view class="feature-desc">订单和消费记录同步保存</view>
+    </view>
+  </view>
+</view>
