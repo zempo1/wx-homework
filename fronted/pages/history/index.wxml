@@ -25,12 +25,26 @@
 
   <view class="empty" wx:if="{{ records.length === 0 }}">暂无消费记录</view>
 
-  <view class="record" wx:for="{{ records }}" wx:key="orderId">
-    <view class="record-left">
-      <view class="summary">{{ item.summary }}</view>
-      <view class="time">{{ item.consumeTime }}</view>
+  <view class="swipe-item" wx:for="{{ records }}" wx:key="orderId">
+    <view
+      class="swipe-content"
+      style="transform: translateX({{ swipeIndex === index ? swipeOffsetX : 0 }}px); transition: {{ swipeIndex === index && touching ? 'none' : 'transform 0.3s' }}"
+      data-index="{{ index }}"
+      data-order-id="{{ item.orderId }}"
+      bindtouchstart="onTouchStart"
+      bindtouchmove="onTouchMove"
+      bindtouchend="onTouchEnd"
+      bindtap="onRecordTap"
+    >
+      <view class="record-left">
+        <view class="summary">{{ item.summary }}</view>
+        <view class="time">{{ item.consumeTime }}</view>
+      </view>
+      <view class="amount">¥{{ item.totalAmount }}</view>
     </view>
-    <view class="amount">¥{{ item.totalAmount }}</view>
+    <view class="swipe-delete" data-order-id="{{ item.orderId }}" data-index="{{ index }}" catchtap="deleteRecord">
+      <text>删除</text>
+    </view>
   </view>
 
   <view class="load-tip" wx:if="{{ records.length > 0 }}">

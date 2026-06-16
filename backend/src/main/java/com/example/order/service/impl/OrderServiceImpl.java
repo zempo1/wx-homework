@@ -236,4 +236,19 @@ public class OrderServiceImpl implements OrderService {
         order.setUpdateTime(LocalDateTime.now());
         ordersMapper.updateById(order);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteHistoryRecord(Long userId, Long orderId) {
+        Orders order = ordersMapper.selectOne(new LambdaQueryWrapper<Orders>()
+                .eq(Orders::getId, orderId)
+                .eq(Orders::getUserId, userId)
+                .last("LIMIT 1"));
+        if (order == null) {
+            throw BizException.notFound("订单不存在");
+        }
+        orderItemMapper.delete(new LambdaQueryWrapper<OrderItem>()
+                .eq(OrderItem::getOrderId, orderId));
+        ordersMapper.deleteById(orderId);
+    }
 }

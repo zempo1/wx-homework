@@ -20,4 +20,6 @@ public interface OrderService {
     void pickupOrder(Long userId, Long orderId);
 
     void cancelOrder(Long userId, Long orderId);
+
+    void deleteHistoryRecord(Long userId, Long orderId);
 }

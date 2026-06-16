@@ -77,14 +77,36 @@
   font-size: 26rpx;
 }
 
-.record {
+.swipe-item {
+  position: relative;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.swipe-content {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 20rpx;
   padding: 26rpx;
-  border-radius: 8rpx;
   background: #fff;
+  position: relative;
+  z-index: 1;
+}
+
+.swipe-delete {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e95022;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 700;
 }
 
 .record-left {
