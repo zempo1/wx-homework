@@ -22,9 +22,7 @@
       <!-- 搜索栏 -->
       <view class="search-bar">
         <view class="search-input-wrap">
-          <text class="search-icon">&#128269;</text>
           <input class="search-input" placeholder="搜索商品" value="{{ searchText }}" bindinput="onSearchInput" confirm-type="search" />
-          <text class="search-clear" wx:if="{{ searchText }}" bindtap="clearSearch">&#10005;</text>
         </view>
       </view>
 
