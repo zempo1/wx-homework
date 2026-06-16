@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,5 +40,11 @@ public class OrderController {
     public ApiResponse<PageResult<OrderListVO>> list(@RequestParam(defaultValue = "1") Long page,
                                                      @RequestParam(defaultValue = "10") Long pageSize) {
         return ApiResponse.success(orderService.pageOrders(UserContext.getUserId(), page, pageSize));
+    }
+
+    @PutMapping("/{id}/pickup")
+    public ApiResponse<Void> pickup(@PathVariable Long id) {
+        orderService.pickupOrder(UserContext.getUserId(), id);
+        return ApiResponse.success(null);
     }
 }

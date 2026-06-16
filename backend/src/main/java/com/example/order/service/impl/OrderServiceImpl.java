@@ -199,4 +199,23 @@ public class OrderServiceImpl implements OrderService {
     private String generatePickupNo() {
         return String.format("A%03d", ThreadLocalRandom.current().nextInt(1, 1000));
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void pickupOrder(Long userId, Long orderId) {
+        Orders order = ordersMapper.selectOne(new LambdaQueryWrapper<Orders>()
+                .eq(Orders::getId, orderId)
+                .eq(Orders::getUserId, userId)
+                .last("LIMIT 1"));
+        if (order == null) {
+            throw BizException.notFound("订单不存在");
+        }
+        if (order.getStatus() != null && order.getStatus() != 0) {
+            throw BizException.badRequest("该订单无法取餐");
+        }
+        order.setStatus(1);
+        order.setPickupTime(LocalDateTime.now());
+        order.setUpdateTime(LocalDateTime.now());
+        ordersMapper.updateById(order);
+    }
 }

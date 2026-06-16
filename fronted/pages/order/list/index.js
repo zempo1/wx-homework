@@ -89,5 +89,30 @@ Page({
     wx.navigateTo({
       url: '/pages/order/detail/index?id=' + e.currentTarget.dataset.id
     })
+  },
+
+  confirmPickup(e) {
+    const orderId = e.currentTarget.dataset.id
+    wx.showModal({
+      title: '确认取餐',
+      content: '确认已取餐？取餐后订单将无法修改。',
+      success: (res) => {
+        if (res.confirm) {
+          this.doPickup(orderId)
+        }
+      }
+    })
+  },
+
+  doPickup(orderId) {
+    app.ensureLogin().then(() => {
+      return request.put('/orders/' + orderId + '/pickup')
+    }).then(() => {
+      wx.showToast({
+        title: '取餐成功',
+        icon: 'success'
+      })
+      this.reload()
+    })
   }
 })

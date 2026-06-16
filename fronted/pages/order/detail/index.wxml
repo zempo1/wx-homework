@@ -42,4 +42,8 @@
       <text>{{ order.remark }}</text>
     </view>
   </view>
+
+  <view class="pickup-btn-wrap" wx:if="{{ order.status === 0 }}">
+    <button class="pickup-btn" bindtap="confirmPickup">确认取餐</button>
+  </view>
 </view>

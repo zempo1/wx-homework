@@ -16,4 +16,6 @@ public interface OrderService {
     PageResult<OrderListVO> pageOrders(Long userId, Long page, Long pageSize);
 
     PageResult<HistoryRecordVO> pageHistory(Long userId, Long page, Long pageSize);
+
+    void pickupOrder(Long userId, Long orderId);
 }

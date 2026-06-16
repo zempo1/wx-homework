@@ -71,12 +71,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 168rpx;
   height: 62rpx;
   border-radius: 8rpx;
+  font-size: 26rpx;
+}
+
+.card-actions {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.btn-detail {
+  width: 168rpx;
   background: #222;
   color: #fff;
-  font-size: 26rpx;
+}
+
+.btn-pickup {
+  width: 168rpx;
+  background: #ff8a2a;
+  color: #fff;
 }
 
 .load-tip {

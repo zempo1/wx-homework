@@ -12,7 +12,10 @@
         <view class="pickup">取餐号 {{ item.pickupNo }}</view>
         <view class="amount">¥{{ item.totalAmount }}</view>
       </view>
-      <button data-id="{{ item.id }}" bindtap="goDetail">查看详情</button>
+      <view class="card-actions">
+        <button class="btn-detail" data-id="{{ item.id }}" bindtap="goDetail">查看详情</button>
+        <button class="btn-pickup" wx:if="{{ item.status === 0 }}" data-id="{{ item.id }}" bindtap="confirmPickup">确认取餐</button>
+      </view>
     </view>
   </view>
 

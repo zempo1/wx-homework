@@ -121,3 +121,21 @@
   text-align: right;
   word-break: break-all;
 }
+
+.pickup-btn-wrap {
+  margin-top: 40rpx;
+  padding: 0 26rpx;
+}
+
+.pickup-btn {
+  width: 100% !important;
+  height: 88rpx;
+  border-radius: 44rpx;
+  background: #ff8a2a;
+  color: #fff;
+  font-size: 32rpx;
+  font-weight: 700;
+  line-height: 88rpx;
+  text-align: center;
+  border: none;
+}
