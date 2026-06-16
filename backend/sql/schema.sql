@@ -9,6 +9,7 @@ USE order_miniprogram;
 
 DROP TABLE IF EXISTS order_item;
 DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS product_favorite;
 DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS user;
@@ -86,6 +87,19 @@ CREATE TABLE order_item (
   CONSTRAINT fk_order_item_product
     FOREIGN KEY (product_id) REFERENCES product(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单明细表';
+
+CREATE TABLE product_favorite (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT COMMENT '收藏ID',
+  user_id BIGINT NOT NULL COMMENT '用户ID',
+  product_id BIGINT NOT NULL COMMENT '商品ID',
+  create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '收藏时间',
+  UNIQUE INDEX uk_user_product (user_id, product_id),
+  INDEX idx_product_favorite_user_id (user_id),
+  CONSTRAINT fk_favorite_user
+    FOREIGN KEY (user_id) REFERENCES user(id),
+  CONSTRAINT fk_favorite_product
+    FOREIGN KEY (product_id) REFERENCES product(id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品收藏表';
 
 INSERT INTO category (id, name, sort, status) VALUES
 (1, '热销套餐', 1, 1),

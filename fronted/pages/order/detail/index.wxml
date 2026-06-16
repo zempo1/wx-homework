@@ -43,7 +43,8 @@
     </view>
   </view>
 
-  <view class="pickup-btn-wrap" wx:if="{{ order.status === 0 }}">
-    <button class="pickup-btn" bindtap="confirmPickup">确认取餐</button>
+  <view class="action-btn-wrap" wx:if="{{ order.status === 0 }}">
+    <button class="action-btn cancel-btn" bindtap="confirmCancel">取消订单</button>
+    <button class="action-btn pickup-btn" bindtap="confirmPickup">确认取餐</button>
   </view>
 </view>

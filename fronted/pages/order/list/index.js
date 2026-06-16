@@ -114,5 +114,30 @@ Page({
       })
       this.reload()
     })
+  },
+
+  confirmCancel(e) {
+    const orderId = e.currentTarget.dataset.id
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消该订单？取消后无法恢复。',
+      success: (res) => {
+        if (res.confirm) {
+          this.doCancel(orderId)
+        }
+      }
+    })
+  },
+
+  doCancel(orderId) {
+    app.ensureLogin().then(() => {
+      return request.put('/orders/' + orderId + '/cancel')
+    }).then(() => {
+      wx.showToast({
+        title: '已取消',
+        icon: 'success'
+      })
+      this.reload()
+    })
   }
 })

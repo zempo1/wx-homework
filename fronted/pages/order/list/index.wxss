@@ -83,13 +83,20 @@
 }
 
 .btn-detail {
-  width: 168rpx;
+  width: 140rpx !important;
   background: #222;
   color: #fff;
 }
 
+.btn-cancel {
+  width: 100rpx !important;
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #ccc !important;
+}
+
 .btn-pickup {
-  width: 168rpx;
+  width: 100rpx !important;
   background: #ff8a2a;
   color: #fff;
 }

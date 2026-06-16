@@ -122,20 +122,31 @@
   word-break: break-all;
 }
 
-.pickup-btn-wrap {
+.action-btn-wrap {
+  display: flex;
+  gap: 24rpx;
   margin-top: 40rpx;
   padding: 0 26rpx;
 }
 
-.pickup-btn {
-  width: 100% !important;
+.action-btn {
+  flex: 1;
   height: 88rpx;
   border-radius: 44rpx;
-  background: #ff8a2a;
-  color: #fff;
-  font-size: 32rpx;
+  font-size: 30rpx;
   font-weight: 700;
   line-height: 88rpx;
   text-align: center;
   border: none;
+}
+
+.cancel-btn {
+  background: #fff;
+  color: #666;
+  border: 2rpx solid #ccc !important;
+}
+
+.pickup-btn {
+  background: #ff8a2a;
+  color: #fff;
 }

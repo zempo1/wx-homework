@@ -19,7 +19,21 @@
       scroll-with-animation
       bindscroll="onProductScroll"
     >
-      <block wx:for="{{ categories }}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="id">
+      <!-- 搜索栏 -->
+      <view class="search-bar">
+        <view class="search-input-wrap">
+          <text class="search-icon">&#128269;</text>
+          <input class="search-input" placeholder="搜索商品" value="{{ searchText }}" bindinput="onSearchInput" confirm-type="search" />
+          <text class="search-clear" wx:if="{{ searchText }}" bindtap="clearSearch">&#10005;</text>
+        </view>
+      </view>
+
+      <!-- 搜索无结果提示 -->
+      <view class="search-empty" wx:if="{{ searchText && filteredCategories.length === 0 }}">
+        <text>未找到“{{ searchText }}”相关商品</text>
+      </view>
+
+      <block wx:for="{{ filteredCategories }}" wx:for-item="category" wx:for-index="categoryIndex" wx:key="id">
         <view class="category-title" id="category-{{ categoryIndex }}">{{ category.name }}</view>
         <view
           class="product-card"
@@ -31,10 +45,14 @@
           <view class="product-image">
             <image wx:if="{{ product.imageUrl }}" src="{{ product.imageUrl }}" mode="aspectFill" />
             <text wx:else>美食</text>
+            <view class="fav-icon {{ product.favorited ? 'fav-active' : '' }}" data-id="{{ product.id }}" bindtap="toggleFavorite">
+              <text>{{ product.favorited ? '♥' : '♡' }}</text>
+            </view>
           </view>
           <view class="product-main">
             <view class="product-name">{{ product.name }}</view>
             <view class="product-desc">{{ product.description }}</view>
+            <view class="product-sales" wx:if="{{ product.sales > 0 }}">月售{{ product.sales }}</view>
             <view class="product-bottom">
               <text class="product-price">¥{{ product.price }}</text>
               <view class="product-stepper">

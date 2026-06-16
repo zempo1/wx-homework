@@ -15,6 +15,7 @@ public class ProductVO {
     private String imageUrl;
     private BigDecimal price;
     private Integer sales;
+    private Boolean favorited;
 
     public static ProductVO from(Product product) {
         ProductVO vo = new ProductVO();

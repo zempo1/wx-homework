@@ -47,4 +47,10 @@ public class OrderController {
         orderService.pickupOrder(UserContext.getUserId(), id);
         return ApiResponse.success(null);
     }
+
+    @PutMapping("/{id}/cancel")
+    public ApiResponse<Void> cancel(@PathVariable Long id) {
+        orderService.cancelOrder(UserContext.getUserId(), id);
+        return ApiResponse.success(null);
+    }
 }

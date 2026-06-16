@@ -18,4 +18,6 @@ public interface OrderService {
     PageResult<HistoryRecordVO> pageHistory(Long userId, Long page, Long pageSize);
 
     void pickupOrder(Long userId, Long orderId);
+
+    void cancelOrder(Long userId, Long orderId);
 }

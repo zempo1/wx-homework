@@ -6,6 +6,8 @@ let categoryPosition = [];
 Page({
   data: {
     categories: [],
+    filteredCategories: [],
+    searchText: "",
     activeIndex: 0,
     tapIndex: 0,
     cartList: [],
@@ -97,6 +99,7 @@ Page({
             categories: this.syncProductQuantity(list),
           },
           () => {
+            this.applyFilter();
             this.calculateCategoryPosition();
           },
         );
@@ -128,6 +131,32 @@ Page({
       });
     });
     query.exec();
+  },
+
+  onSearchInput(e) {
+    this.setData({ searchText: e.detail.value });
+    this.applyFilter();
+  },
+
+  clearSearch() {
+    this.setData({ searchText: "" });
+    this.applyFilter();
+  },
+
+  applyFilter() {
+    const keyword = (this.data.searchText || "").trim().toLowerCase();
+    if (!keyword) {
+      this.setData({ filteredCategories: this.data.categories });
+      return;
+    }
+    const filtered = (this.data.categories || []).map((category) => {
+      const products = (category.products || []).filter((product) => {
+        return (product.name || "").toLowerCase().includes(keyword)
+          || (product.description || "").toLowerCase().includes(keyword);
+      });
+      return Object.assign({}, category, { products });
+    }).filter((category) => category.products.length > 0);
+    this.setData({ filteredCategories: filtered });
   },
 
   tapCategory(e) {
@@ -202,6 +231,7 @@ Page({
       cartTotal: summary.totalPrice.toFixed(2),
       showCart: summary.count > 0 ? this.data.showCart : false,
     });
+    this.applyFilter();
   },
 
   syncProductQuantity(categories) {
@@ -252,6 +282,27 @@ Page({
     }
     wx.navigateTo({
       url: "/pages/order/confirm/index",
+    });
+  },
+
+  toggleFavorite(e) {
+    const productId = e.currentTarget.dataset.id;
+    const app = getApp();
+    app.ensureLogin().then(() => {
+      return request.put("/favorites/" + productId);
+    }).then(() => {
+      // 切换本地收藏状态
+      const categories = (this.data.categories || []).map((category) => {
+        const products = (category.products || []).map((product) => {
+          if (product.id === productId) {
+            return Object.assign({}, product, { favorited: !product.favorited });
+          }
+          return product;
+        });
+        return Object.assign({}, category, { products });
+      });
+      this.setData({ categories });
+      this.applyFilter();
     });
   },
 });

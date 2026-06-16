@@ -63,5 +63,29 @@ Page({
       })
       this.loadDetail()
     })
+  },
+
+  confirmCancel() {
+    wx.showModal({
+      title: '取消订单',
+      content: '确认取消该订单？取消后无法恢复。',
+      success: (res) => {
+        if (res.confirm) {
+          this.doCancel()
+        }
+      }
+    })
+  },
+
+  doCancel() {
+    app.ensureLogin().then(() => {
+      return request.put('/orders/' + this.orderId + '/cancel')
+    }).then(() => {
+      wx.showToast({
+        title: '已取消',
+        icon: 'success'
+      })
+      this.loadDetail()
+    })
   }
 })
