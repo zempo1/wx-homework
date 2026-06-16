@@ -43,9 +43,6 @@
           <view class="product-image">
             <image wx:if="{{ product.imageUrl }}" src="{{ product.imageUrl }}" mode="aspectFill" />
             <text wx:else>美食</text>
-            <view class="fav-icon {{ product.favorited ? 'fav-active' : '' }}" data-id="{{ product.id }}" bindtap="toggleFavorite">
-              <text>{{ product.favorited ? '♥' : '♡' }}</text>
-            </view>
           </view>
           <view class="product-main">
             <view class="product-name">{{ product.name }}</view>

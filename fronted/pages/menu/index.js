@@ -284,25 +284,4 @@ Page({
       url: "/pages/order/confirm/index",
     });
   },
-
-  toggleFavorite(e) {
-    const productId = e.currentTarget.dataset.id;
-    const app = getApp();
-    app.ensureLogin().then(() => {
-      return request.put("/favorites/" + productId);
-    }).then(() => {
-      // 切换本地收藏状态
-      const categories = (this.data.categories || []).map((category) => {
-        const products = (category.products || []).map((product) => {
-          if (product.id === productId) {
-            return Object.assign({}, product, { favorited: !product.favorited });
-          }
-          return product;
-        });
-        return Object.assign({}, category, { products });
-      });
-      this.setData({ categories });
-      this.applyFilter();
-    });
-  },
 });
